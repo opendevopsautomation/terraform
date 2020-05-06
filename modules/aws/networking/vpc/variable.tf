@@ -16,6 +16,12 @@ variable "enable_dns_hostnames" {
   default     = false
 }
 
+variable "enable_dns_support" {
+  description = "Should be true to enable DNS support in the VPC"
+  type        = bool
+  default     = true
+}
+
 variable "default_vpc_enable_dns_support" {
   description = "Should be true to enable DNS support in the Default VPC"
   type        = bool

@@ -1,5 +1,5 @@
 resource "aws_vpc" "vpc" {
-  count = length(var.cidr) > 0 ? 1 : 0
+  count                            = length(var.cidr) > 0 ? 1 : 0
   cidr_block                       = var.cidr
   instance_tenancy                 = var.instance_tenancy
   enable_dns_hostnames             = var.enable_dns_hostnames

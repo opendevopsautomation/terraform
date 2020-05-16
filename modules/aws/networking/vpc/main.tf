@@ -28,6 +28,7 @@ resource "aws_vpc_ipv4_cidr_block_association" "secondary_cidr" {
   cidr_block = element(var.secondary_cidr_blocks, count.index)
 }
 
+
 #Retrieve information about an EC2 DHCP Options configuration.
 
 resource "aws_vpc_dhcp_options" "dns_resolver" {
@@ -43,3 +44,12 @@ resource "aws_vpc_dhcp_options" "dns_resolver" {
     var.tags
   )
 }
+
+
+resource "aws_vpc_dhcp_options_association" "dns_resolver" {
+  count = var.create_vpc && var.enable_dhcp_options ? 1 : 0
+
+  vpc_id          = aws_vpc.vpc[0].id
+  dhcp_options_id = aws_vpc_dhcp_options.dns_resolver[0].id
+}
+

@@ -75,3 +75,28 @@ variable "vpc_tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "secondary_cidr_blocks" {
+  description = "List of secondary CIDR blocks to associate with the VPC to extend the IP Address pool"
+  type        = list(string)
+  default     = []
+}
+
+variable "enable_dhcp_options" {
+  description = "Should be true if you want to specify a DHCP options set with a custom domain name"
+  type        = bool
+  default     = true
+}
+
+variable "dhcp_options_domain_name" {
+  description = "Specifies DNS name for DHCP options set (requires enable_dhcp_options set to true)"
+  type        = string
+  default     = "compute.internal"
+}
+
+variable "dhcp_options_domain_name_servers" {
+  description = "Specify a list of DNS server addresses for DHCP options set, default to AWS provided (requires enable_dhcp_options set to true)"
+  type        = list(string)
+  default     = ["AmazonProvidedDNS"]
+}
+
